@@ -94,7 +94,7 @@
   [ = #const.statement.title.at(lang) ]
   statement()
 
-  set par(justify: true, first-line-indent: (amount: 2.5em, all: true), leading: 1.5em)
+  set par(justify: true, first-line-indent: (amount: 2.5em, all: true), leading: 1em)
 
   doc
 }
