@@ -20,11 +20,28 @@
     ),
   )
 
+  set figure(numbering: it => {
+    let count = counter(heading.where(level: 1)).at(here()).first()
+    if count != none {
+      numbering("1.1", count, it)
+    } else {
+      numbering("1", it)
+    }
+  })
+  show figure.where(kind: image): set figure.caption(position: bottom)
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure: set block(breakable: true)
+
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
 
     set align(center)
     set text(weight: "bold", size: 14pt)
+
+    let kinds = query(figure).map(fig => fig.kind).dedup()
+    for kind in kinds {
+      counter(figure.where(kind: kind)).update(0)
+    }
 
     if it.numbering != none {
       let num = counter(heading).display(it.numbering)
@@ -65,23 +82,12 @@
           it
         }
       } else {
-        strong(el.body + fill + "\n")
+        strong[#el.body#fill\ ]
       })
-    } else if el.func() == figure {
-      let count = el.counter.at(el.location())
-      let num = numbering("1", ..count)
-      let head = counter(heading).at(el.location()).at(0)
-
-      if el.kind == image or el.kind == table {
-        link(el.location(), strong[#el.supplement #head.#num #el.caption.body#fill\ ])
-      }
     } else {
       it
     }
   }
-
-  show figure.where(kind: image): set figure.caption(position: bottom)
-  show figure.where(kind: table): set figure.caption(position: top)
 
   cover()
 
