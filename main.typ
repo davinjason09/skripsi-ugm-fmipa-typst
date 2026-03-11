@@ -16,12 +16,12 @@
 
 #include "chapter/abstract_en.typ"
 
-// Update the heading numbering
-#set heading(numbering: "1.1")
-
-// Set the page numbering to use numbers and reset the counter
-#set page(numbering: "1")
-#counter(page).update(1)
+// WARNING: DO NOT REMOVE
+// This single show rule will:
+// - Update the heading numbering
+// - Change the page numbering from roman numerals to arabic numeral
+// - Reset the page counter to 1
+#show: start-chapter
 
 = PENDAHULUAN
 
@@ -40,7 +40,7 @@
 //
 // #include "chapter/4.typ"
 
-// Remove heading numbering
+// Remove heading numbering, resetting the show rule above
 #set heading(numbering: none)
 
 #bibliography("ref.bib")
