@@ -1,4 +1,4 @@
-#import "core/helper.typ": to-roman
+#import "core/helper.typ": start-chapter
 #import "core/pages.typ": approval, cover, outlines, statement
 #import "core/constants.typ" as const
 #import "config.typ": *
@@ -22,11 +22,7 @@
 
   set figure(numbering: it => {
     let count = counter(heading.where(level: 1)).at(here()).first()
-    if count != none {
-      numbering("1.1", count, it)
-    } else {
-      numbering("1", it)
-    }
+    if count != none { numbering("1.1", count, it) } else { numbering("1", it) }
   })
   show figure.where(kind: image): set figure.caption(position: bottom)
   show figure.where(kind: table): set figure.caption(position: top)
@@ -39,51 +35,43 @@
     set text(weight: "bold", size: 14pt)
 
     let kinds = query(figure).map(fig => fig.kind).dedup()
-    for kind in kinds {
-      counter(figure.where(kind: kind)).update(0)
-    }
+    for kind in kinds { counter(figure.where(kind: kind)).update(0) }
 
     if it.numbering != none {
       let num = counter(heading).display(it.numbering)
       let prefix = const.chapter.at(lang)
-      block[#upper(prefix) #num \ #upper(it.body)]
-      v(1.5em, weak: true)
+
+      block[
+        #upper(prefix) #num \
+        #upper(it.body)
+      ]
     } else {
-      block[#upper(it.body)]
-      v(1.5em, weak: true)
+      block(upper(it.body))
     }
+
+    v(1.5em, weak: true)
   }
 
   show heading.where(level: 2): it => {
     set text(size: 12pt)
-    v(0.5em)
-    block[#counter(heading).display() #it.body]
-    v(0.5em)
+    pad(top: 0.5em, bottom: 0.5em, block(counter(heading).display(it.numbering) + h(1em) + it.body))
   }
 
+  set outline.entry(fill: pad(left: 0.2cm, right: 0.6cm, repeat([.], gap: 0.4em)))
   show outline: set heading(outlined: true)
   show outline: set par(first-line-indent: 0pt)
-  show outline.entry: it => context {
+  show outline.entry: it => {
     let el = it.element
-    let fill = [#box(width: 1fr, it.fill) #it.page()]
-    v(1em, weak: true)
+    let is-top = el.func() == heading and el.level == 1
 
-    if el.func() == heading {
-      let c = counter(heading).at(el.location())
+    v(if is-top { 1.5em } else { 0.8em }, weak: true)
 
-      link(el.location(), if el.numbering != none {
-        let num = numbering("1.", ..c)
-
-        if el.level == 1 {
-          num = int(numbering("1", ..c))
-          let prefix = const.chapter.at(lang)
-          strong[#prefix #to-roman(num) #el.body#fill\ ]
-        } else {
-          it
-        }
-      } else {
-        strong[#el.body#fill\ ]
-      })
+    if is-top {
+      show repeat: none
+      strong(it)
+    } else if el.func() == figure {
+      show it.element.caption.at("supplement").text: none
+      it
     } else {
       it
     }
@@ -92,7 +80,8 @@
   cover()
 
   set page(numbering: "i")
-  counter(page).update(1)
+  set heading(numbering: none)
+  counter(page).update(2)
 
   [ = #const.approval.title.at(lang) ]
   approval()
