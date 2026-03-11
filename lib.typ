@@ -9,7 +9,7 @@
     author: author.name,
   )
   set bibliography(style: "apa", title: const.bibliography.at(lang))
-  set text(font: "Times New Roman", size: 12pt, lang: lang)
+  set text(font: font, size: 12pt, lang: lang)
   set page(
     paper: "a4",
     margin: (
