@@ -25,7 +25,6 @@
   upper[#author.name\ #author.id]
   v(2cm, weak: true)
 
-
   let program-name = (const.program.prefix.name.at(lang), program.name)
   if lang == "en" {
     program-name = program-name.rev()
@@ -91,9 +90,6 @@
         #const.examiners.first.at(lang)
       ],
 
-#let statement() = [
-  #set par(justify: true)
-  #v(1cm, weak: true)
       [
         #if second_supervisor != "" [
           #v(1.5cm) \
@@ -111,21 +107,26 @@
   }
 }
 
-  #const.statement.content.at(lang)
+#let statement() = {
+  set par(justify: true)
+  v(1cm, weak: true)
 
-  #v(2cm, weak: true)
-  #set align(right)
-  #table(
+  const.statement.content.at(lang)
+
+  v(2cm, weak: true)
+  set align(right)
+  table(
     columns: auto,
     align: center + horizon,
     stroke: none,
     inset: 0%,
     [
       Yogyakarta, #fmt-date(exam-date) \
-      #v(2cm) \ #upper(author.name)
+      #v(1cm) \
+      #upper(author.name)
     ],
   )
-]
+}
 
 #let outlines() = {
   outline(title: const.outlines.main.at(lang), indent: auto)
