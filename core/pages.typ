@@ -131,9 +131,17 @@
 #let outlines() = {
   outline(title: const.outlines.main.at(lang), indent: auto)
   pagebreak()
-  outline(title: const.outlines.figure.at(lang), target: figure.where(kind: image))
+  outline(
+    title: const.outlines.figure.at(lang),
+    target: figure.where(kind: image),
+  )
   pagebreak()
-  outline(title: const.outlines.table.at(lang), target: figure.where(kind: table))
+  outline(
+    title: const.outlines.table.at(lang),
+    target: figure.where(kind: table),
+  )
+}
+
 #let abstract(lang: "id", keywords: (), content) = {
   {
     set align(center)
