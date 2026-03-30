@@ -1,5 +1,5 @@
-#import "core/pages.typ": approval, cover, outlines, statement
 #import "core/utils.typ": start-chapter
+#import "core/pages.typ": abstract, approval, cover, outlines, statement
 #import "core/constants.typ" as const
 #import "config.typ": *
 

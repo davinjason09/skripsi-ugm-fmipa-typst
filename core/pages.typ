@@ -134,4 +134,21 @@
   outline(title: const.outlines.figure.at(lang), target: figure.where(kind: image))
   pagebreak()
   outline(title: const.outlines.table.at(lang), target: figure.where(kind: table))
+#let abstract(lang: "id", keywords: (), content) = {
+  {
+    set align(center)
+    set par(justify: false, first-line-indent: 0pt, leading: 0.8em)
+
+    v(0.8cm)
+    strong(title.at(lang))
+    pad(top: 0.25cm, bottom: 0.25cm, const.abstract.by.at(lang))
+    [#upper(author.name)\ #author.id]
+  }
+
+  set par(justify: true, first-line-indent: 3em, leading: 0.6em)
+  v(0.8cm)
+  content
+
+  v(0.8cm, weak: true)
+  [#const.abstract.keyword.at(lang): #keywords.join(", ")]
 }
