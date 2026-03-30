@@ -28,34 +28,7 @@
   show figure.where(kind: table): set figure.caption(position: top)
   show figure: set block(breakable: true)
 
-  show heading.where(level: 1): it => {
-    pagebreak(weak: true)
-
-    set align(center)
-    set text(weight: "bold", size: 14pt)
-
-    let kinds = query(figure).map(fig => fig.kind).dedup()
-    for kind in kinds { counter(figure.where(kind: kind)).update(0) }
-
-    if it.numbering != none {
-      let num = counter(heading).display(it.numbering)
-      let prefix = const.chapter.at(lang)
-
-      block[
-        #upper(prefix) #num \
-        #upper(it.body)
-      ]
-    } else {
-      block(upper(it.body))
     }
-
-    v(1.5em, weak: true)
-  }
-
-  show heading.where(level: 2): it => {
-    set text(size: 12pt)
-    pad(top: 0.5em, bottom: 0.5em, block(counter(heading).display(it.numbering) + h(1em) + it.body))
-  }
 
   set outline.entry(fill: pad(left: 0.2cm, right: 0.6cm, repeat([.], gap: 0.4em)))
   show outline: set heading(outlined: true)
@@ -78,6 +51,43 @@
   }
 
   cover()
+  show heading: it => {
+    if it.level > 1 {
+      set text(size: 12pt)
+
+      let display = counter(heading).display(it.numbering)
+      let gap = (top: 0.85em, bottom: 0.15em)
+      if it.level == 2 {
+        gap = (top: 1.2em, bottom: 0.55em)
+      } else if it.level == 3 {
+        gap = (top: 1.05em, bottom: 0.35em)
+      }
+
+      v(gap.top)
+      block(display + h(1em) + it.body)
+      v(gap.bottom)
+    } else {
+      pagebreak(weak: true)
+
+      set align(center)
+      set text(weight: "bold", size: 14pt)
+
+      let kinds = query(figure).map(fig => fig.kind).dedup()
+      for kind in kinds { counter(figure.where(kind: kind)).update(0) }
+      counter(math.equation).update(0)
+
+      if it.numbering != none {
+        let num = counter(heading).display(it.numbering)
+        let prefix = const.chapter.at(lang)
+
+        block(upper[#prefix #num\ #it.body])
+        v(1.0em, weak: true)
+      } else {
+        block(upper(it.body))
+        v(1.0em)
+      }
+    }
+  }
 
   set page(numbering: "i")
   set heading(numbering: none)
