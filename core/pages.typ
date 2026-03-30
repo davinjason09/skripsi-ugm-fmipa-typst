@@ -1,6 +1,6 @@
 #import "../config.typ": *
 #import "constants.typ" as const
-#import "helper.typ": fmt-date
+#import "utils.typ": fmt-date
 
 #let cover() = {
   set align(center)
