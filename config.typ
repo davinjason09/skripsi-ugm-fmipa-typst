@@ -5,15 +5,25 @@
 #let lang = "id"
 
 // Document Font (pick one of these 3, make sure the font is installed in your system)
-#let font = "Libertinus Serif"
+#let font = "Liberation Serif"
 // #let font = "Times New Roman"
 // #let font = "Calibri"
+
+// Raw Font (used for quotes and codeblocks, make sure the font is installed in your system)
+#let raw-font = "JetBrainsMonoNL NF"
+// #let raw-font = "DejaVu Sans Mono" // default
 
 // Your Thesis title, in 2 languages, Indonesian and English
 #let title = (
   id: "title-id",
   en: "title-en",
 )
+
+// You can also use content instead of string:
+// #let title = (
+//   id: [title-id],
+//   en: [title-en],
+// )
 
 // The name and id of the author
 #let author = (
