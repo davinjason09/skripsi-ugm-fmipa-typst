@@ -23,3 +23,8 @@
 
   body
 }
+
+#let no-indent(body) = {
+  set par(first-line-indent: 0em)
+  body
+}
