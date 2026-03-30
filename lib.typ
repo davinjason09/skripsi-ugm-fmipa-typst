@@ -3,7 +3,14 @@
 #import "core/constants.typ" as const
 #import "config.typ": *
 
-#let project(doc) = {
+#let project(
+  display: (
+    second-cover: true,
+    approval: true,
+    statement: true,
+  ),
+  doc,
+) = {
   set document(
     title: title.at(lang),
     author: author.name,
@@ -50,7 +57,6 @@
     }
   }
 
-  cover()
   show table.cell: cell => {
     set par(justify: true, linebreaks: "simple", leading: 0.9em)
     cell
@@ -129,17 +135,40 @@
     }
   }
 
+  cover(force-thesis: display.second-cover)
+
   set page(numbering: "i")
-  set heading(numbering: none)
   counter(page).update(2)
 
-  [ = #const.approval.title.at(lang) ]
-  approval()
+  if display.second-cover {
+    set page(
+      footer: none,
+      header: context { align(right, counter(page).display()) },
+    )
+    show heading: none
 
-  [ = #const.statement.title.at(lang) ]
-  statement()
+    [= HALAMAN JUDUL]
+    cover()
+  }
 
-  set par(justify: true, first-line-indent: (amount: 2.5em, all: true), leading: 1em)
+  if display.approval {
+    set page(footer: none)
+
+    [ = #const.approval.title.at(lang) ]
+    approval()
+  }
+
+  if display.statement {
+    [ = #const.statement.title.at(lang) ]
+    statement()
+  }
+
+  set par(
+    justify: true,
+    first-line-indent: (amount: 2.5em, all: true),
+    leading: 1em,
+    linebreaks: "optimized",
+  )
 
   doc
 }
