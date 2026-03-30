@@ -41,69 +41,75 @@
   ]
 }
 
-#let approval() = [
-  #set align(center)
-  #v(1cm, weak: true)
-  #strong(const.thesis.at(lang))
-  #v(0.75cm, weak: true)
-  #upper(strong(title.at(lang)))
-  #v(1cm, weak: true)
+#let approval() = {
+  set align(center)
+  v(0.8cm, weak: true)
+  text(size: 14pt, strong(const.thesis.at(lang)))
+  v(0.75cm, weak: true)
+  upper(strong(title.at(lang)))
+  v(1cm, weak: true)
 
-  #const.approval.proposed.at(lang)
-  #v(0.75cm, weak: true)
-  #upper(author.name) \ #author.id
-  #v(1cm, weak: true)
+  const.approval.proposed.at(lang)
+  v(0.75cm, weak: true)
+  [#upper(author.name) \ #author.id]
+  v(1cm, weak: true)
 
-  #const.approval.presented.at(lang)
-  #fmt-date(exam-date)
+  [#const.approval.presented.at(lang) #fmt-date(exam-date)]
 
-  #v(0.75cm, weak: true)
-  #const.approval.examiners.at(lang)
+  v(0.75cm, weak: true)
+  const.approval.examiners.at(lang)
 
-  #let first_supervisor = ""
-  #let second_supervisor = ""
+  let first_supervisor = ""
+  let second_supervisor = ""
 
-  #if type(supervisor) == array {
+  if type(supervisor) == array {
     first_supervisor = supervisor.at(0)
     if supervisor.len() > 1 { second_supervisor = supervisor.at(1) }
   } else {
     first_supervisor = supervisor
   }
 
-  #set align(left)
-  #table(
-    columns: (1fr, 1fr),
-    stroke: none,
-    inset: 0%,
-    [
-      #v(3cm) \
-      #first_supervisor \
-      #const.supervisor.at(lang) #if second_supervisor != "" [ I ]
-    ],
-    [
-      #v(3cm) \
-      #examiners.at(0) \
-      #const.examiners.first.at(lang)
-    ],
+  context {
+    let values = const.examiners.values().map(c => c.at(lang)) + examiners
+    let max-name-width = calc.max(..values.map(content => {
+      measure([#content]).width
+    }))
 
-    [
-      #if second_supervisor != "" [
-        #v(3cm) \
-        #second_supervisor \
-        #const.supervisor.at(lang) II
-      ]
-    ],
-    [
-      #v(3cm) \
-      #examiners.at(1) \
-      #const.examiners.second.at(lang)
-    ],
-  )
-]
+    align(left, table(
+      columns: (1fr, 1fr),
+      align: (left, right),
+      stroke: none,
+      [
+        #v(1.5cm) \
+        #first_supervisor \
+        #const.supervisor.at(lang) #if second_supervisor != "" [ I ]
+      ],
+      block(width: max-name-width)[
+        #set align(left)
+        #v(1.5cm) \
+        #examiners.at(0) \
+        #const.examiners.first.at(lang)
+      ],
 
 #let statement() = [
   #set par(justify: true)
   #v(1cm, weak: true)
+      [
+        #if second_supervisor != "" [
+          #v(1.5cm) \
+          #second_supervisor \
+          #const.supervisor.at(lang) II
+        ]
+      ],
+      block[
+        #set align(left)
+        #v(1.5cm) \
+        #examiners.at(1) \
+        #const.examiners.second.at(lang)
+      ],
+    ))
+  }
+}
 
   #const.statement.content.at(lang)
 
