@@ -1,4 +1,4 @@
-#import "core/utils.typ": start-chapter
+#import "core/utils.typ": no-indent, start-chapter
 #import "core/pages.typ": abstract, approval, cover, outlines, statement
 #import "core/constants.typ" as const
 #import "config.typ": *
