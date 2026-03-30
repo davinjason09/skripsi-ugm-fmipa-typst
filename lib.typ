@@ -30,21 +30,8 @@
 
     }
 
-  set outline.entry(fill: pad(left: 0.2cm, right: 0.6cm, repeat([.], gap: 0.4em)))
-  show outline: set heading(outlined: true)
-  show outline: set par(first-line-indent: 0pt)
-  show outline.entry: it => {
     let el = it.element
-    let is-top = el.func() == heading and el.level == 1
 
-    v(if is-top { 1.5em } else { 0.8em }, weak: true)
-
-    if is-top {
-      show repeat: none
-      strong(it)
-    } else if el.func() == figure {
-      show it.element.caption.at("supplement").text: none
-      it
     } else {
       it
     }
@@ -86,6 +73,41 @@
         block(upper(it.body))
         v(1.0em)
       }
+    }
+  }
+
+  set outline.entry(fill: repeat([.], gap: 0.4em))
+  show outline: set heading(outlined: true)
+  show outline: set par(first-line-indent: 0pt)
+  show outline.entry: it => {
+    let el = it.element
+    let is-top = el.func() == heading and el.level == 1
+    let spacing = 0.8cm
+
+    v(if is-top { 1.5em } else { 0.8em }, weak: true)
+
+    let body = {
+      box(width: 100% - spacing, {
+        it.body()
+        box(width: 1fr, inset: (left: 0.2cm), it.fill)
+      })
+      sym.wj
+      box(width: spacing, align(end, it.page()))
+    }
+
+    let item = link(el.location(), it.indented(
+      it.prefix(),
+      box(baseline: 100% - 0.65em, width: 1fr, body),
+    ))
+
+    if is-top {
+      show repeat: none
+      strong(item)
+    } else if el.func() == figure {
+      show it.element.caption.at("supplement").text: none
+      item
+    } else {
+      item
     }
   }
 
