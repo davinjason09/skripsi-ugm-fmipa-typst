@@ -2,7 +2,7 @@
 #import "constants.typ" as const
 #import "utils.typ": fmt-date
 
-#let cover() = {
+#let cover(force-thesis: false) = {
   set align(center)
 
   let cover-title = const.thesis.at(lang)
@@ -14,7 +14,7 @@
   v(1.5cm, weak: true)
   strong[#upper(title.en)]
 
-  if doc-type == "proposal" {
+  if doc-type == "proposal" and not force-thesis {
     v(1.5cm, weak: true)
     const.proposal.at(lang)
   }
