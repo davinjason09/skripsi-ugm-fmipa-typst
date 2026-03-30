@@ -28,16 +28,34 @@
   show figure.where(kind: table): set figure.caption(position: top)
   show figure: set block(breakable: true)
 
+  set raw(tab-size: 2)
+  show raw: set text(font: raw-font, size: 10pt)
+  set math.equation(numbering: it => {
+    let count = counter(heading.where(level: 1)).at(here()).first()
+    if count != none { numbering("(1.1)", count, it) } else {
+      numbering("(1)", it)
     }
+  })
 
+  show ref: it => {
     let el = it.element
 
+    if el != none and el.func() == math.equation {
+      let loc = el.location()
+      let head-count = counter(heading.where(level: 1)).at(loc).first()
+      let math-count = counter(math.equation).at(loc)
+      link(loc)[#el.supplement #numbering("1.1", head-count, ..math-count)]
     } else {
       it
     }
   }
 
   cover()
+  show table.cell: cell => {
+    set par(justify: true, linebreaks: "simple", leading: 0.9em)
+    cell
+  }
+
   show heading: it => {
     if it.level > 1 {
       set text(size: 12pt)
