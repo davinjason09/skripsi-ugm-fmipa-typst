@@ -1,14 +1,24 @@
-#let thesis = (
+#let cover_title = (
   id: "SKRIPSI",
   en: "UNDERGRADUATE THESIS",
 )
 
-#let proposal = (
+#let thesis_text = (
+  id: "Diajukan untuk memenuhi salah satu syarat memperoleh derajat Sarjana %s",
+  en: "%s",
+)
+
+#let proposal_text = (
   id: "Usulan Penelitian",
   en: "Undergraduate Thesis Proposal",
 )
 
-#let program = (
+#let cover_heading = (
+  id: "HALAMAN JUDUL",
+  en: "TITLE",
+)
+
+#let program_labels = (
   prefix: (
     name: (
       id: "PROGRAM STUDI",
@@ -32,7 +42,7 @@
 #let approval = (
   title: (
     id: "HALAMAN PENGESAHAN",
-    en: "APPROVAL PAGE",
+    en: "APPROVAL",
   ),
   proposed: (
     id: "Telah dipersiapkan dan disusun oleh",
@@ -48,12 +58,12 @@
   ),
 )
 
-#let supervisor = (
+#let supervisor_label = (
   id: "Pembimbing",
   en: "Supervisor",
 )
 
-#let examiners = (
+#let examiner_labels = (
   first: (
     id: "Ketua Penguji",
     en: "Examiner Chief",
@@ -75,12 +85,12 @@
   ),
 )
 
-#let outlines = (
+#let outline_titles = (
   main: (
     id: "DAFTAR ISI",
     en: "TABLE OF CONTENTS",
   ),
-  figure: (
+  image: (
     id: "DAFTAR GAMBAR",
     en: "LIST OF FIGURES",
   ),
@@ -95,8 +105,18 @@
   en: "Chapter",
 )
 
-#let bibliography = (
+#let refs_title = (
   id: "DAFTAR PUSTAKA",
   en: "REFERENCES",
 )
 
+#let abstract = (
+  by: (
+    id: "Oleh",
+    en: "By",
+  ),
+  keyword: (
+    id: "Kata kunci",
+    en: "Keywords",
+  ),
+)
