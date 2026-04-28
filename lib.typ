@@ -42,28 +42,26 @@
   display: (:),
   body,
 ) = {
-  import "core/utils.typ": merge
+  import "@preview/transl:0.2.0": transl
+  import "core/utils.typ": merge, setup-transl
   import "core/pages.typ": approval, cover, statement
-  import "core/constants.typ" as const
 
   doc = merge(doc, _defaults.doc)
   display = merge(display, _defaults.display)
 
-  let doc-lang = state("lang", "id")
-  doc-lang.update(doc.lang)
-
-  let page-cfg = (doc: doc, display: display)
   let should-show = toggle => doc.type == "thesis" or toggle
+  state("doc").update(doc)
+
+  let transl-db = setup-transl()
+  transl(data: transl-db)
 
   context {
-    let lang = doc-lang.get()
-
     set document(
-      title: doc.title.at(lang),
+      title: doc.title.at(doc.lang),
       author: doc.author.name,
     )
-    set bibliography(style: "apa", title: const.refs_title.at(lang))
-    set text(font: doc.font, size: 12pt, lang: lang, hyphenate: true)
+    set bibliography(style: "apa", title: transl("refs-title"))
+    set text(font: doc.font, size: 12pt, lang: doc.lang, hyphenate: true)
 
     set page(
       paper: "a4",
@@ -135,8 +133,7 @@
 
         if it.numbering != none {
           let num = counter(heading).display(it.numbering)
-          let prefix = const.chapter.at(lang)
-          upper[#prefix #num\ #it.body]
+          upper[#transl("chapter") #num\ #it.body]
         } else {
           upper(it.body)
         }
@@ -179,14 +176,14 @@
       }
     }
 
-    cover(page-cfg)
+    cover(doc)
 
     set page(numbering: "i")
     counter(page).update(2)
 
-    if should-show(display.second-cover) { cover(page-cfg) }
-    if should-show(display.approval) { approval(page-cfg) }
-    if should-show(display.statement) { statement(page-cfg) }
+    if should-show(display.second-cover) { cover(doc) }
+    if should-show(display.approval) { approval(doc) }
+    if should-show(display.statement) { statement(doc) }
 
     set par(
       justify: true,

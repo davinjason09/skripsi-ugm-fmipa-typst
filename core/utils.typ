@@ -19,11 +19,19 @@
     .to-dict()
 }
 
+#let setup-transl() = {
+  let db = (l10n: "ftl")
+  let langs = ("id", "en")
+
+  for l in langs { db.insert(l, read("../lang/" + l + ".ftl")) }
+  db
+}
+
 #let fmt-date(date) = {
   if type(date) == datetime {
     icu.fmt(date, locale: lang, length: "long")
   } else {
-    if date == "" [Soon™] else { date }
+    if date == "" { "Soon™" } else { date }
   }
 }
 
