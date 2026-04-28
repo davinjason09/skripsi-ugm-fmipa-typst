@@ -1,6 +1,11 @@
 #import "lib.typ": *
 
-#show: project
+#show: thesis.with(
+  doc: (
+    type: "thesis",
+    lang: "id",
+  ),
+)
 
 = PRAKATA
 
@@ -41,7 +46,7 @@
 // #include "chapter/4.typ"
 
 // Remove heading numbering, resetting the show rule above
-#set heading(numbering: none)
+#show: end-chapter
 
 #bibliography("ref.bib")
 
