@@ -3,16 +3,16 @@
 
 #let _defaults = (
   doc: (
-    type: "proposal",
+    type: "thesis",
     lang: "id",
     font: "Liberation Serif",
     raw-font: "JetBrainsMonoNL NF",
     title: (
-      id: "title-id",
-      en: "title-en",
+      id: "JUDUL BAHASA INDONESIA",
+      en: "ENGLISH TITLE",
     ),
     author: (
-      name: "John Doe",
+      name: "STUDENT NAME",
       id: "xx/xxxxxx/xx/xxxxx",
     ),
     program: (
@@ -22,7 +22,7 @@
       degree: "Komputer",
     ),
     supervisor: (
-      "Jane Doe"
+      "Supervisor Name"
     ),
     examiners: (
       "Examiner 1",
