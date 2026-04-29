@@ -2,8 +2,6 @@
 
 A Typst thesis/proposal template for FMIPA UGM, converted from the original [LaTeX template](https://github.com/muhrifqii/skripsi-fmipa-ugm-latex/).
 
-The document entry point is `main.typ`. Most of the metadata you will change lives there, while the actual thesis content is organized in the `chapter/` directory.
-
 ## Why Typst?
 
 - Fast incremental compilation
@@ -68,6 +66,9 @@ typst watch main.typ --open
 
 ## Template Usage
 
+> [!NOTE]
+> This template can be hot-reloaded on every keystroke, even when changing the document's language from Indonesian to English!
+
 ### 1. Configure `main.typ`
 
 The `#show: thesis.with(...)` call in `main.typ` sets up your document metadata. You only need to provide the keys you want to override, as the template merges your input with defaults defined in `lib.typ`.
@@ -125,8 +126,6 @@ Example setup:
   keywords: ("Kata", "Kunci"),
   [Isi intisari di sini...]
 )
-
-
 ```
 
 #### Default configuration:
@@ -188,7 +187,7 @@ More information about citing is available [here](https://typst.app/docs/referen
 
 ### 5. Customize Built-in Labels in `lang/`
 
-Labels like "Bab", "Daftar Pustaka", "Halaman Pengesahan", and the outline titles are managed in `lang/id.ftl` and `lang/en.ftl`. These files use the Fluent format via the `transl` package.
+Labels like "Bab", "Daftar Pustaka", "Halaman Pengesahan", and the outline titles are managed in `lang/id.ftl` and `lang/en.ftl`. These files use the Fluent format via the `@preview/transl` package.
 
 Edit `lang/*.ftl` when you want to change wording without changing template behavior. Common keys to customize are:
 
