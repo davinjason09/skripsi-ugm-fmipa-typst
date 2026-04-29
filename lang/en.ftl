@@ -25,7 +25,8 @@ statement-content = I hereby declare that this Thesis does not contain any work 
 outline-main = TABLE OF CONTENTS
 outline-image = LIST OF FIGURES
 outline-table = LIST OF TABLES
-outline-raw = LIST OF CODES
+outline-raw = LIST OF LISTINGS
+outline-equation = LIST OF EQUATIONS
 
 chapter = Chapter
 refs-title = REFERENCES

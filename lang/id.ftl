@@ -26,6 +26,7 @@ outline-main = DAFTAR ISI
 outline-image = DAFTAR GAMBAR
 outline-table = DAFTAR TABEL
 outline-raw = DAFTAR KODE
+outline-equation = DAFTAR PERSAMAAN
 
 chapter = Bab
 refs-title = DAFTAR PUSTAKA
