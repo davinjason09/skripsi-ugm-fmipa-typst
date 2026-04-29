@@ -11,6 +11,10 @@
 
 #include "chapter/preface.typ"
 
+// By default, calling outlines() will create the main outline (list of chapters) and outlines for table and image.
+// However, you can add more to it by passing an array where the values can either be a function or string.
+// Example
+// #outlines(kinds: (image, table, raw, math.equation))
 #outlines()
 
 = INTISARI
