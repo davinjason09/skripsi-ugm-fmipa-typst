@@ -2,6 +2,19 @@
 
 A Typst thesis/proposal template for FMIPA UGM, converted from the original [LaTeX template](https://github.com/muhrifqii/skripsi-fmipa-ugm-latex/).
 
+The document entry point is `main.typ`. Most metadata lives there, while the thesis content is organized in `chapter/`.
+
+## Table of Contents
+
+- [Why Typst?](#why-typst)
+- [Repository layout](#repository-layout)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#quick-start)
+- [Template Usage](#template-usage)
+- [Editor Setup](#editor-setup)
+- [Important Notes](#important-notes)
+- [License](#license)
+
 ## Why Typst?
 
 - Fast incremental compilation
@@ -220,10 +233,39 @@ By default, `#outlines()` generates:
 - the list of figures
 - the list of tables
 
-If you also want a list of code listings, call it like this:
+If you also want additional outlines, pass more kinds explicitly. For example:
 
 ```typst
-#outlines(kinds: (image, table, raw))
+#outlines(kinds: (image, table, raw, math.equation))
+```
+
+The title for each extra outline is resolved in `core/pages.typ` with this rule:
+
+```typst
+transl("outline-" + repr(kind))
+```
+
+That means the translation key must match the `repr(kind)` result:
+
+- `image` → `outline-image`
+- `table` → `outline-table`
+- `raw` → `outline-raw`
+- `math.equation` → `outline-equation`
+
+So if you add `raw` or `math.equation`, make sure both `lang/id.ftl` and `lang/en.ftl` contain the matching keys.
+
+Example:
+
+```ftl
+# lang/id.ftl
+outline-raw = DAFTAR KODE
+outline-equation = DAFTAR PERSAMAAN
+```
+
+```ftl
+# lang/en.ftl
+outline-raw = LIST OF LISTINGS
+outline-equation = LIST OF EQUATIONS
 ```
 
 ### 7. Customize Template Behavior
@@ -233,11 +275,11 @@ If you want to change the template-wide default behavior, edit the `#let outline
 As a rule of thumb:
 
 - change `lang/*.ftl` if you only want different titles or terms
-- change `core/pages.typ` if you want different cover, layout, etc.
-- keep all styling inside of `lib.typ`, inside of the `thesis` function.
+- change `core/pages.typ` if you want different outline targets, generated pages, or page-level behavior
+- keep all styling and global defaults inside `lib.typ`, inside the `thesis` function
 - keep `main.typ` as the single compile target even if you customize template internals.
 
-### 7. Best Practices
+### 8. Best Practices
 
 - Use consistent label prefixes:
   - `fig:` for figures
@@ -261,7 +303,7 @@ Example figure label:
 As shown in @fig:system-architecture, ...
 ```
 
-### 8. Display Overrides
+### 9. Display Overrides
 
 You can toggle specific front-matter pages. This is mainly useful for proposals:
 
