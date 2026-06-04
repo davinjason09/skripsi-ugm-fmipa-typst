@@ -155,8 +155,17 @@
   pagebreak()
 }
 
-#let abstract(lang: "id", keywords: (), content) = context {
+#let abstract(lang: "id", conf) = {
+  let doc = conf.doc
+  let pages = conf.pages
+  let title = if lang == "id" [INTISARI] else [ABSTRACT]
+  let content = pages.at("abstract-" + lang)
+
+  if content == "" { panic[Abstract can't be empty!] }
+
   set text(lang: lang)
+
+  [ = #title ]
 
   {
     set align(center)
@@ -164,8 +173,6 @@
 
     v(0.8cm)
 
-
-    let doc = state("doc").get()
     upper(strong(doc.title.at(lang)))
     pad(top: 0.25cm, bottom: 0.25cm, transl("abstract-by"))
     [#upper(doc.author.name)\ #doc.author.id]
@@ -175,6 +182,7 @@
   v(0.8cm)
   content
 
+  let keywords = pages.at("keywords-" + lang)
   v(0.8cm, weak: true)
   [#transl("abstract-keyword"): #keywords.join(", ")]
 }
