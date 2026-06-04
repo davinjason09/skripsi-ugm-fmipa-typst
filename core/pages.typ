@@ -15,7 +15,7 @@
 
     set page(
       footer: none,
-      header: if final > 1 { align(right, counter(page).display()) } else { none },
+      header: if final > 1 and current != 1 { align(right, counter(page).display()) } else { none },
     )
 
     if final-cover {
