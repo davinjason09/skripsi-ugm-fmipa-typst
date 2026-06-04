@@ -19,11 +19,18 @@
     .to-dict()
 }
 
-#let setup-transl() = {
+#let setup-transl(user-cfg) = {
   let db = (l10n: "ftl")
   let langs = ("id", "en")
 
-  for l in langs { db.insert(l, read("../lang/" + l + ".ftl")) }
+  for l in langs {
+    let content = read("../lang/" + l + ".ftl")
+    let user-content = user-cfg.at(l, default: "")
+    if type(user-content) != str { panic[User's transl extension must be a string (lang: #l)] }
+
+    db.insert(l, content + user-content)
+  }
+
   db
 }
 
