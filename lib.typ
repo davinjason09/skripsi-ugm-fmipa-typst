@@ -34,11 +34,11 @@
     keywords-en: (),
   ),
   display: (
-    second-cover: true,
-    approval: true,
-    statement: true,
-    preface: true,
-    motto: true,
+    second-cover: false,
+    approval: false,
+    statement: false,
+    preface: false,
+    motto: false,
   ),
   misc: (
     transl: (:), /// <- dictionary of strings
