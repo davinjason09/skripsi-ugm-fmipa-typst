@@ -146,13 +146,13 @@
   let fig-kind = (image, table, raw)
   for kind in kinds {
     let target = if kind in fig-kind or type(kind) == str { figure.where(kind: kind) } else { kind }
+    let repr-kind = if type(kind) == str { kind } else { repr(kind) }
 
     pagebreak()
-    outline(
-      title: transl("outline-" + repr(kind)),
-      target: target,
-    )
+    outline(title: transl("outline-" + repr-kind), target: target)
   }
+
+  pagebreak()
 }
 
 #let abstract(lang: "id", keywords: (), content) = context {
