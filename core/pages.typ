@@ -140,6 +140,35 @@
   ))
 }
 
+#let preface(conf) = {
+  let doc = conf.doc
+  let pages = conf.pages
+
+  [ = #transl("preface-title") ]
+
+  set par(
+    justify: true,
+    first-line-indent: (amount: 2.5em, all: true),
+    leading: 1em,
+    linebreaks: "optimized",
+  )
+
+  pages.preface
+
+  v(2cm, weak: true)
+  align(right, table(
+    columns: auto,
+    align: center + horizon,
+    stroke: none,
+    inset: 0%,
+    [
+      Yogyakarta, #fmt-date(doc.exam-date) \
+      #v(1cm) \
+      #upper(doc.author.name)
+    ],
+  ))
+}
+
 #let outlines(kinds: (image, table)) = {
   outline(title: transl("outline-main"), indent: auto)
 
