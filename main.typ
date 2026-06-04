@@ -5,25 +5,14 @@
     type: "thesis",
     lang: "id",
   ),
+  pages: (
+    preface: include "chapter/preface.typ",
+    abstract-id: include "chapter/abstract_id.typ",
+    abstract-en: include "chapter/abstract_en.typ",
+    keywords-id: ("aaaa", "bbbb", "cccc", "dddd", "eeee"),
+    keywords-en: ("aaaa", "bbbb", "cccc", "dddd", "eeee"),
+  ),
 )
-
-= PRAKATA
-
-#include "chapter/preface.typ"
-
-// By default, calling outlines() will create the main outline (list of chapters) and outlines for table and image.
-// However, you can add more to it by passing an array where the values can either be a function or string.
-// Example
-// #outlines(kinds: (image, table, raw, math.equation))
-#outlines()
-
-= INTISARI
-
-#include "chapter/abstract_id.typ"
-
-= ABSTRACT
-
-#include "chapter/abstract_en.typ"
 
 // WARNING: DO NOT REMOVE
 // This single show rule will:
