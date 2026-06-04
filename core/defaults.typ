@@ -1,0 +1,47 @@
+#let _defaults = (
+  doc: (
+    type: "thesis",
+    lang: "id",
+    font: "Liberation Serif",
+    raw-font: "JetBrainsMonoNL NF",
+    title: (
+      id: "JUDUL BAHASA INDONESIA",
+      en: "ENGLISH TITLE",
+    ),
+    author: (
+      name: "STUDENT NAME",
+      id: "xx/xxxxxx/xx/xxxxx",
+    ),
+    program: (
+      name: "Ilmu Komputer",
+      department: "Ilmu Komputer dan Elektronika",
+      faculty: "Matematika dan Ilmu Pengetahuan Alam",
+      degree: "Komputer",
+    ),
+    supervisor: (
+      "Supervisor Name"
+    ),
+    examiners: (
+      "Examiner 1",
+      "Examiner 2",
+    ),
+    exam-date: "",
+  ),
+  pages: (
+    preface: "",
+    motto: "",
+    outlines-kind: (image, table),
+    abstract-id: "",
+    abstract-en: "",
+    keywords-id: (),
+    keywords-en: (),
+  ),
+  display: (
+    second-cover: true,
+    approval: true,
+    statement: true,
+    preface: true,
+    motto: true,
+  ),
+)
+
