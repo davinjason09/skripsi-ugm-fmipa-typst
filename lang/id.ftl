@@ -33,3 +33,5 @@ refs-title = DAFTAR PUSTAKA
 
 abstract-by = Oleh
 abstract-keyword = Kata kunci
+
+preface-title = KATA PENGANTAR

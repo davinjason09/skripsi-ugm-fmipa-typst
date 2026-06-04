@@ -33,3 +33,5 @@ refs-title = REFERENCES
 
 abstract-by = By
 abstract-keyword = Keywords
+
+preface-title = PREFACE
