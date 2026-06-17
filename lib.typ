@@ -44,7 +44,7 @@
     transl: (:), /// <- dictionary of strings
   ),
   body,
-) = context {
+) = {
   import "@preview/transl:0.2.0": transl
   import "core/utils.typ": merge, setup-transl
   import "core/pages.typ": abstract, approval, cover, outlines, preface, statement

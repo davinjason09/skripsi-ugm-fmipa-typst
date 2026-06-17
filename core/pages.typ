@@ -49,7 +49,7 @@
   }
 }
 
-#let approval(doc) = {
+#let approval(doc) = context {
   set page(footer: none)
   set align(center)
 
