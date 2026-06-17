@@ -1,4 +1,4 @@
-#import "lib.typ": *
+#import "@local/ugm-thesis-unofficial:0.0.1": end-chapter, start-chapter, thesis
 
 #show: thesis.with(
   doc: (
