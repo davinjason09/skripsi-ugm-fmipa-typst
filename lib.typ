@@ -172,8 +172,8 @@
     if is-top {
       show repeat: none
       strong(item)
-    } else if el.func() == figure {
-      show it.element.caption.at("supplement").text: none
+    } else if el.func() == figure and el.caption != none {
+      show el.caption.at("supplement").text: none
       item
     } else {
       item
