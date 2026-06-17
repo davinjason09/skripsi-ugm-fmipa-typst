@@ -1,0 +1,51 @@
+[package]
+  name        = "ugm-thesis-unofficial"
+  version     = "0.0.1"
+  entrypoint  = "lib.typ"
+  authors     = ["Davin Jason Evan Raharjo"]
+  description = "An Unofficial UGM Thesis Template"
+  repository  = "https://github.com/davinjason09/skripsi-ugm-fmipa-typst"
+  keywords    = ["ugm"]
+  categories  = ["thesis"]
+  disciplines = [
+    "agriculture",
+    "anthropology",
+    "archaeology",
+    "architecture",
+    "biology",
+    "business",
+    "chemistry",
+    "communication",
+    "computer-science",
+    "design",
+    "drawing",
+    "economics",
+    "education",
+    "engineering",
+    "fashion",
+    "film",
+    "geography",
+    "geology",
+    "history",
+    "journalism",
+    "law",
+    "linguistics",
+    "literature",
+    "mathematics",
+    "medicine",
+    "music",
+    "painting",
+    "philosophy",
+    "photography",
+    "physics",
+    "politics",
+    "psychology",
+    "sociology",
+    "theater",
+    "theology",
+    "transportation",
+  ]
+
+[template]
+  path       = "template"
+  entrypoint = "template/main.typ"
