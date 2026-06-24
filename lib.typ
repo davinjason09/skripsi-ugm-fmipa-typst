@@ -1,4 +1,4 @@
-#import "core/utils.typ": end-chapter, no-indent, start-chapter
+#import "core/utils.typ": end-chapter, no-indent, start-chapter, to-string
 
 #let thesis(
   doc: (
@@ -164,10 +164,12 @@
       box(width: spacing, align(end, it.page()))
     }
 
-    let item = link(el.location(), it.indented(
-      it.prefix(),
-      box(baseline: 100% - 0.65em, width: 1fr, entry-body),
-    ))
+    let prefix = it.prefix()
+    if el.func() == math.equation {
+      prefix = to-string(prefix).match(regex("\\d+.\\d+")).text
+    }
+
+    let item = link(el.location(), it.indented(prefix, box(width: 1fr, entry-body)))
 
     if is-top {
       show repeat: none
