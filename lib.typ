@@ -203,5 +203,8 @@
     linebreaks: "optimized",
   )
 
+  set page(numbering: "1")
+  counter(page).update(1)
+
   body
 }
