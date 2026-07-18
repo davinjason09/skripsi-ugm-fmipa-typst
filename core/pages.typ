@@ -18,7 +18,7 @@
 
     if final-cover {
       show heading: none
-      [ = #transl("cover-heading") ]
+      [ = #transl("cover-heading", mode: str) ]
     }
 
     strong(transl("document"))
@@ -51,7 +51,7 @@
   set page(footer: none)
   set align(center)
 
-  [ = #transl("approval-heading") ]
+  [ = #transl("approval-heading", mode: str) ]
 
   v(0.8cm, weak: true)
   text(size: 14pt, strong(transl("document")))
@@ -118,7 +118,7 @@
 #let statement(doc) = {
   set par(justify: true)
 
-  [ = #transl("statement-heading") ]
+  context [ = #transl("statement-heading", mode: str) ]
 
   v(1cm, weak: true)
 
@@ -160,7 +160,7 @@
   let doc = conf.doc
   let pages = conf.pages
 
-  [ = #transl("preface-title") ]
+  context [ = #transl("preface-title", mode: str) ]
 
   set par(
     justify: true,
@@ -185,8 +185,8 @@
   ))
 }
 
-#let outlines(kinds: (image, table)) = {
-  outline(title: transl("outline-main"), indent: auto)
+#let outlines(kinds: (image, table)) = context {
+  outline(title: transl("outline-main", mode: str), indent: auto)
 
   let fig-kind = (image, table, raw)
   for kind in kinds {
@@ -194,7 +194,7 @@
     let repr-kind = if type(kind) == str { kind } else { repr(kind) }
 
     pagebreak()
-    outline(title: transl("outline-" + repr-kind), target: target)
+    outline(title: transl("outline-" + repr-kind, mode: str), target: target)
   }
 
   pagebreak()
