@@ -146,12 +146,14 @@
       for kind in kinds { counter(figure.where(kind: kind)).update(0) }
       counter(math.equation).update(0)
 
-      if it.numbering != none {
-        let num = counter(heading).display(it.numbering)
-        upper[#transl("chapter") #num\ #it.body]
-      } else {
-        upper(it.body)
-      }
+      let num = if it.numbering != none { counter(heading).display(it.numbering) } else { none }
+      block(
+        if num != none {
+          upper[#transl("chapter") #num\ #it.body]
+        } else {
+          upper(it.body)
+        },
+      )
       v(1.0em, weak: it.numbering != none)
     }
   }
