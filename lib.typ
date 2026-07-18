@@ -5,7 +5,8 @@
     type: "thesis",
     lang: "id",
     font: "Liberation Serif",
-    raw-font: "JetBrainsMonoNL NF",
+    code-font: "JetBrainsMonoNL NF",
+    raw-font: "DejaVu Sans Mono",
     title: (
       id: "JUDUL BAHASA INDONESIA",
       en: "ENGLISH TITLE",
@@ -87,7 +88,8 @@
   show figure: set block(breakable: true)
 
   set raw(tab-size: 2)
-  show raw: set text(font: _doc.raw-font, size: 10pt)
+  show raw.where(block: true): set text(font: _doc.code-font, size: 8.25pt)
+  show raw.where(block: false): set text(font: _doc.raw-font, size: 10pt)
   set math.equation(numbering: it => {
     let count = counter(heading).at(here()).first()
     if count != none { numbering("(1.1)", count, it) } else { numbering("(1)", it) }

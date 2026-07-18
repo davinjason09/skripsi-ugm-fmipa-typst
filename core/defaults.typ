@@ -3,7 +3,8 @@
     type: "thesis",
     lang: "id",
     font: "Liberation Serif",
-    raw-font: "JetBrainsMonoNL NF",
+    code-font: "JetBrainsMonoNL NF",
+    raw-font: "DejaVu Sans Mono",
     title: (
       id: "JUDUL BAHASA INDONESIA",
       en: "ENGLISH TITLE",
