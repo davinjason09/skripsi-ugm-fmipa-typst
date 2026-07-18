@@ -19,8 +19,12 @@ supervisor-label = Supervisor
 examiner-chief = Examiner Chief
 examiner-member = Examiner Member
 
-statement-heading = STATEMENT
-statement-content = I hereby declare that this Thesis does not contain any work that has been submitted to obtain an undergraduate degree at a university, and to the best of my knowledge, it does not contain any work or opinions written or published by others, except those referenced in writing in this manuscript and mentioned in the bibliography.
+statement-heading = PLAGIARISM-FREE STATEMENT
+statement-intro = I, the undersigned:
+statement-content =
+    I hereby declare that this scientific document—whether a Final Project, Undergraduate Thesis, Master’s Thesis, or Doctoral Dissertation—does not contain any portions of other scientific works that have been submitted to obtain an academic degree at any institution of higher education, nor does it contain any works or opinions previously written or published by other individuals or institutions, except those that are explicitly cited in this document and for which the sources are fully listed in the Bibliography.
+
+    I hereby declare that this academic document is free from any elements of plagiarism. Should this Final Project/Undergraduate Thesis/Master’s Thesis/Doctoral Dissertation be proven in the future to constitute plagiarism of another author’s work and/or to intentionally present work or opinions that are the work of another author, I am willing to accept the applicable academic and/or legal sanctions.
 
 outline-main = TABLE OF CONTENTS
 outline-image = LIST OF FIGURES

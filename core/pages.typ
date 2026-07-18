@@ -122,18 +122,36 @@
 
   v(1cm, weak: true)
 
+  transl("statement-intro")
+
+  let start-year = "20" + doc.author.id.split("/").first()
+  pad(left: -0.4em)[
+    #set text(hyphenate: false)
+    // @typstyle off
+    #table(
+      columns: (auto, auto, 1fr),
+      stroke: none,
+      [Nama],             [:], [#doc.author.name],
+      [NIM],              [:], [#doc.author.id],
+      [Tahun terdaftar],  [:], [#start-year],
+      [Program studi],    [:], [#doc.program.name],
+      [Fakultas/Sekolah], [:], [#doc.program.faculty],
+    )
+  ]
+
   transl("statement-content")
 
   v(2cm, weak: true)
   align(right, table(
     columns: auto,
-    align: center + horizon,
+    align: right + horizon,
     stroke: none,
     inset: 0%,
     [
-      Yogyakarta, #fmt-date(doc.exam-date) \
-      #v(1cm) \
-      #upper(doc.author.name)
+      Yogyakarta, #doc.exam-date \
+      #v(2.5cm) \
+      #upper(doc.author.name) \
+      #doc.author.id
     ],
   ))
 }

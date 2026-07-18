@@ -19,8 +19,12 @@ supervisor-label = Pembimbing
 examiner-chief = Ketua Penguji
 examiner-member = Anggota Penguji
 
-statement-heading = PERNYATAAN
-statement-content = Dengan ini saya menyatakan bahwa dalam Skripsi ini tidak terdapat karya yang pernah diajukan untuk memperoleh gelar kesarjanaan di suatu Perguruan Tinggi, dan sepanjang pengetahuan saya juga tidak terdapat karya atau pendapat yang ditulis atau diterbitkan oleh orang lain, kecuali yang secara tertulis diacu dalam naskah ini dan disebutkan dalam daftar pustaka.
+statement-heading = PERNYATAAN BEBAS PLAGIASI
+statement-intro = Saya yang bertanda tangan di bawah ini:
+statement-content =
+    Menyatakan bahwa dalam dokumen ilmiah Tugas Akhir/Skripsi/Tesis/Disertasi ini tidak terdapat bagian dari karya ilmiah lain yang telah diajukan untuk memperoleh gelar akademik di suatu Lembaga Pendidikan Tinggi, dan juga tidak terdapat karya atau pendapat yang pernah ditulis atau diterbitkan oleh orang/Lembaga lain, kecuali yang secara tertulis disitasi dalam dokumen ini dan disebutkan sumbernya secara lengkap dalam daftar Pustaka.
+
+    Dengan demikian saya menyatakan bahwa dokumen ilmiah ini bebas dari unsur-unsur plagiasi dan apabila dokumen ilmiah Tugas Akhir/Skripsi/Tesis/Disertasi ini di kemudian hari terbukti merupakan plagiasi dari hasil karya penulis lain dan/atau dengan sengaja mengajukan karya atau pendapat yang merupakan hasil karya penulis lain, maka penulis bersedia menerima sanksi akademik dan/atau sanksi hukum yang berlaku.
 
 outline-main = DAFTAR ISI
 outline-image = DAFTAR GAMBAR
