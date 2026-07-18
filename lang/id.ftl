@@ -31,6 +31,7 @@ outline-image = DAFTAR GAMBAR
 outline-table = DAFTAR TABEL
 outline-raw = DAFTAR KODE
 outline-equation = DAFTAR PERSAMAAN
+outline-algorithm = DAFTAR ALGORITMA
 
 chapter = Bab
 refs-title = DAFTAR PUSTAKA
@@ -42,3 +43,7 @@ preface-title = KATA PENGANTAR
 preface-writer = Penulis
 
 appendix-title = LAMPIRAN
+
+algorithm = Algoritma
+section = Bab
+subsection = Subbab

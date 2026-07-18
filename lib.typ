@@ -106,12 +106,27 @@
 
   show ref: it => {
     let el = it.element
+    let content = str(it.target)
 
-    if el != none and el.func() == math.equation {
-      let loc = el.location()
+    // TODO: harden this path, force figure, table, list, eq prefix when labelling
+    if query(it.target).len() <= 0 and content.starts-with(regex("\\w{2,3}-")) {
+      underline(stroke: (paint: red, thickness: 2pt, dash: "densely-dotted"), [undefined: \@#content])
+      return
+    }
+
+    if el == none { return it }
+
+    let loc = el.location()
+    if el.func() == math.equation {
       let head-count = counter(heading).at(loc).first()
       let math-count = counter(math.equation).at(loc)
       link(loc)[#el.supplement #numbering("1.1", head-count, ..math-count)]
+    } else if el.func() == heading {
+      let prefix = transl(if el.level == 1 { "section" } else { "subsection" })
+      link(loc)[#prefix #numbering(el.numbering, ..counter(heading).at(el.location()))]
+    } else if el.func() == figure and el.kind == "algorithm" {
+      let prefix = transl("algorithm")
+      link(loc)[#prefix #numbering(el.numbering, ..counter(figure).at(el.location()))]
     } else {
       it
     }

@@ -31,6 +31,7 @@ outline-image = LIST OF FIGURES
 outline-table = LIST OF TABLES
 outline-raw = LIST OF LISTINGS
 outline-equation = LIST OF EQUATIONS
+outline-algorithm = LIST OF ALGORITHMS
 
 chapter = Chapter
 refs-title = REFERENCES
@@ -42,3 +43,7 @@ preface-title = PREFACE
 preface-writer = Author
 
 appendix-title = APPENDIX
+
+algorithm = Algorithm
+section = Chapter
+subsection = Subchapter
