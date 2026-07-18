@@ -88,27 +88,27 @@
     align: (left, right),
     stroke: none,
     [
-      #v(1.5cm) \
+      #v(2.5cm) \
       #first_supervisor \
       #transl("supervisor-label") #if second_supervisor != "" [ I ]
     ],
     block(width: max-name-width)[
       #set align(left)
-      #v(1.5cm) \
+      #v(2.5cm) \
       #doc.examiners.at(0) \
       #transl("examiner-chief")
     ],
 
     [
       #if second_supervisor != "" [
-        #v(1.5cm) \
+        #v(2.5cm) \
         #second_supervisor \
         #transl("supervisor-label") II
       ]
     ],
     block[
       #set align(left)
-      #v(1.5cm) \
+      #v(2.5cm) \
       #doc.examiners.at(1) \
       #transl("examiner-member")
     ],
@@ -171,7 +171,7 @@
 
   pages.preface
 
-  v(2cm, weak: true)
+  v(1cm, weak: true)
   align(right, table(
     columns: auto,
     align: center + horizon,
@@ -216,18 +216,18 @@
     set align(center)
     set par(justify: false, first-line-indent: 0pt, leading: 0.8em)
 
-    v(0.8cm)
+    v(0.4cm)
 
     upper(strong(doc.title.at(lang)))
-    pad(top: 0.25cm, bottom: 0.25cm, transl("abstract-by"))
+    pad(top: 0.2cm, bottom: 0.2cm, transl("abstract-by"))
     [#upper(doc.author.name)\ #doc.author.id]
   }
 
   set par(justify: true, first-line-indent: 3em, leading: 0.6em)
-  v(0.8cm)
+  v(0.4cm)
   content
 
+  v(0.4cm, weak: true)
   let keywords = pages.at("keywords-" + lang)
-  v(0.8cm, weak: true)
   [#transl("abstract-keyword"): #keywords.join(", ")]
 }

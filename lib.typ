@@ -181,7 +181,7 @@
     let is-top = el.func() == heading and el.level == 1
     let spacing = 0.8cm
 
-    v(if is-top { 1.5em } else { 0.8em }, weak: true)
+    v(if is-top { 1.25em } else { 0.8em }, weak: true)
 
     let entry-body = {
       box(width: 100% - spacing, {
