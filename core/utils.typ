@@ -1,4 +1,5 @@
 #import "@preview/icu-datetime:0.2.1" as icu
+#import "@preview/transl:0.2.0": transl
 
 #let unique(arr) = {
   arr.map(s => (s, none)).to-dict().keys()
@@ -34,8 +35,9 @@
   db
 }
 
-#let fmt-date(date) = {
+#let fmt-date(date, lang: "id") = {
   if type(date) == datetime {
+    lang = if lang == "en" { "en-GB" } else { lang }
     icu.fmt(date, locale: lang, length: "long")
   } else {
     if date == "" { "Soon™" } else { date }
@@ -60,6 +62,17 @@
   }
 }
 
+#let display_pdf_or_page(pdf, page-type, fallback) = {
+  if type(pdf) == content and pdf.func() == image {
+    show heading: none
+    context [ = #transl(page-type + "-heading", mode: str) ]
+    page(background: pdf, paper: "a4")[]
+    return
+  }
+
+  fallback
+}
+
 #let start-chapter(body) = {
   set heading(numbering: (..nums) => {
     let levels = nums.pos()
@@ -75,6 +88,27 @@
 
 #let end-chapter(body) = {
   set heading(numbering: none)
+  body
+}
+
+#let start-appendix(body) = {
+  counter(heading).update(1)
+  show heading.where(level: 2): set heading(
+    numbering: (..nums) => numbering("A.", nums.pos().last()),
+  )
+
+  show heading.where(level: 2): it => {
+    let kinds = query(figure).map(fig => fig.kind).dedup()
+    for kind in kinds { counter(figure.where(kind: kind)).update(0) }
+    counter(math.equation).update(0)
+    it
+  }
+
+  set figure(numbering: it => {
+    let count = counter(heading).at(here()).at(1)
+    numbering("A.1", count, it)
+  })
+
   body
 }
 
