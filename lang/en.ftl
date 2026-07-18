@@ -35,3 +35,6 @@ abstract-by = By
 abstract-keyword = Keywords
 
 preface-title = PREFACE
+preface-writer = Author
+
+appendix-title = APPENDIX

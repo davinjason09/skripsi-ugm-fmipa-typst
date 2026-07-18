@@ -35,3 +35,6 @@ abstract-by = Oleh
 abstract-keyword = Kata kunci
 
 preface-title = KATA PENGANTAR
+preface-writer = Penulis
+
+appendix-title = LAMPIRAN

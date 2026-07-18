@@ -29,6 +29,8 @@
     exam-date: "",
   ),
   pages: (
+    approval: "",
+    statement: "",
     preface: "",
     motto: "",
     outlines-kind: (image, table),
@@ -36,13 +38,17 @@
     abstract-en: "",
     keywords-id: (),
     keywords-en: (),
+    bibliography: "",
+    appendix: "",
   ),
-  display: (
-    second-cover: false,
-    approval: false,
-    statement: false,
-    preface: false,
-    motto: false,
+  overrides: (
+    display: (
+      second-cover: false,
+      approval: false,
+      statement: false,
+      preface: false,
+      motto: false,
+    ),
   ),
 )
 

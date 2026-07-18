@@ -1,4 +1,4 @@
-#import "core/utils.typ": end-chapter, no-indent, start-chapter, to-string
+#import "core/utils.typ": no-indent, to-string
 
 #let thesis(
   doc: (
@@ -26,6 +26,8 @@
     exam-date: "",
   ),
   pages: (
+    approval: "",
+    statement: "",
     preface: "",
     motto: "",
     outlines-kind: (image, table),
@@ -33,13 +35,17 @@
     abstract-en: "",
     keywords-id: (),
     keywords-en: (),
+    bibliography: "",
+    appendix: "",
   ),
-  display: (
-    second-cover: false,
-    approval: false,
-    statement: false,
-    preface: false,
-    motto: false,
+  overrides: (
+    display: (
+      second-cover: false,
+      approval: false,
+      statement: false,
+      preface: false,
+      motto: false,
+    ),
   ),
   misc: (
     transl: (:), /// <- dictionary of strings
@@ -47,13 +53,16 @@
   body,
 ) = {
   import "@preview/transl:0.2.0": transl
-  import "core/utils.typ": merge, setup-transl
+  import "core/utils.typ": (
+    display_pdf_or_page, end-chapter, fmt-date, merge, setup-transl, start-appendix, start-chapter,
+  )
   import "core/pages.typ": abstract, approval, cover, outlines, preface, statement
   import "core/defaults.typ": _defaults
 
   let _doc = merge(doc, _defaults.doc)
-  let _display = merge(display, _defaults.display)
+  let _display = merge(overrides.display, _defaults.overrides.display)
   let _pages = merge(pages, _defaults.pages)
+  _doc.exam-date = fmt-date(_doc.exam-date, lang: _doc.lang)
   let conf = (doc: _doc, pages: _pages)
 
   let should-show = toggle => _doc.type == "thesis" or toggle
@@ -65,8 +74,8 @@
     title: _doc.title.at(_doc.lang),
     author: _doc.author.name,
   )
-  set bibliography(style: "apa", title: transl("refs-title"))
   set text(font: _doc.font, size: 12pt, lang: _doc.lang, hyphenate: true)
+  set bibliography(style: "apa", title: none)
 
   set page(
     paper: "a4",
@@ -184,6 +193,8 @@
     }
   }
 
+  if _pages.bibliography == "" { panic[Bibliography should not be empty!] }
+
   set page(numbering: none)
   cover(_doc)
 
@@ -191,8 +202,12 @@
   counter(page).update(2)
 
   if should-show(_display.second-cover) { cover(_doc) }
-  if should-show(_display.approval) { approval(_doc) }
-  if should-show(_display.statement) { statement(_doc) }
+  if should-show(_display.approval) {
+    display_pdf_or_page(_pages.approval, "approval", approval(_doc))
+  }
+  if should-show(_display.statement) {
+    display_pdf_or_page(_pages.statement, "statement", statement(_doc))
+  }
   if should-show(_display.preface and _pages.preface != "") { preface(conf) }
   if should-show(_display.motto and _pages.motto != "") { _pages.motto }
 
@@ -210,5 +225,18 @@
   set page(numbering: "1")
   counter(page).update(1)
 
+  show: start-chapter
+
   body
+
+  show: end-chapter
+
+  context [ = #transl("refs-title", mode: str) ]
+  _pages.bibliography
+
+  show: start-appendix
+  if should-show(_pages.appendix != "") {
+    context [ = #transl("appendix-title", mode: str) ]
+    _pages.appendix
+  }
 }

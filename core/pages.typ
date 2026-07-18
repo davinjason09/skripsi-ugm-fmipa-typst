@@ -1,7 +1,5 @@
 #import "@preview/transl:0.2.0": transl
 
-#import "utils.typ": fmt-date
-
 #let cover-count = counter("cover")
 
 #let cover(doc) = {
@@ -66,7 +64,7 @@
   [ #upper(doc.author.name) \ #doc.author.id ]
   v(1cm, weak: true)
 
-  [ #transl("approval-presented", date: fmt-date(doc.exam-date)) ]
+  transl("approval-presented", date: doc.exam-date)
 
   v(0.75cm, weak: true)
   transl("approval-examiners")
@@ -162,9 +160,9 @@
     stroke: none,
     inset: 0%,
     [
-      Yogyakarta, #fmt-date(doc.exam-date) \
-      #v(1cm) \
-      #upper(doc.author.name)
+      Yogyakarta, #doc.exam-date \
+      #v(0.5cm) \
+      #transl("preface-writer")
     ],
   ))
 }
